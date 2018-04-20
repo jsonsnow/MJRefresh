@@ -57,6 +57,10 @@
         // 暂时保留
         if (self.window == nil) return;
         
+        // 导航栏隐藏与显示，导致安全区调整，计算出错误的内边距
+        if (self.scrollView.mj_offsetY > _scrollViewOriginalInset.top) {
+            return;
+        }
         // sectionheader停留解决
         CGFloat insetT = - self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
         insetT = insetT > self.mj_h + _scrollViewOriginalInset.top ? self.mj_h + _scrollViewOriginalInset.top : insetT;
